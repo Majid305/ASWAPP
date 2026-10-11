@@ -1,0 +1,760 @@
+@import "tailwindcss";
+@source "./";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   THÈME CLAIR — ALABASTER ÉDITORIAL & ZELLIGE SUBTIL
+   ============================================================================ */
+html:not(.dark) .zellige-pattern {
+  background-color: #F6F4EE;
+  background-image:
+    radial-gradient(rgba(180, 130, 70, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(15, 23, 42, 0.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.022) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html:not(.dark) main .bg-white:not(.print-paper-sheet) {
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+}
+
+html:not(.dark) input:not([type="checkbox"]):not([type="radio"]),
+html:not(.dark) select,
+html:not(.dark) textarea {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  border-color: #CBD5E1;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+html:not(.dark) input:not([type="checkbox"]):not([type="radio"]):focus,
+html:not(.dark) select:focus,
+html:not(.dark) textarea:focus {
+  outline: none;
+  border-color: #1D4ED8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+}
+
+html:not(.dark) tbody tr:hover {
+  background-color: rgba(241, 245, 249, 0.7);
+}
+
+/* ============================================================================
+   THÈME SOMBRE DOUX — ARDOISE ATLAS CONFORTABLE & CUIVRE/OR DOUX
+   ============================================================================ */
+html.dark .zellige-pattern {
+  background-color: #1E293B;
+  background-image:
+    radial-gradient(rgba(217, 169, 91, 0.10) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Surfaces & Cartes en mode sombre adouci (hors feuille d'aperçu papier A4/80mm) */
+html.dark .bg-white:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.dark .bg-white\/95:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  background-color: #273549 !important;
+  color: #F8FAFC;
+  box-shadow: 0 2px 6px -1px rgba(15, 23, 42, 0.22), 0 1px 3px -1px rgba(15, 23, 42, 0.16);
+}
+
+html.dark .bg-slate-50:not(.print-paper-sheet *),
+html.dark .bg-slate-50\/80:not(.print-paper-sheet *),
+html.dark .bg-slate-50\/70:not(.print-paper-sheet *) {
+  background-color: #304057 !important;
+}
+
+html.dark .bg-slate-100:not(.print-paper-sheet *) {
+  background-color: #374963 !important;
+}
+
+html.dark .bg-slate-200:not(.print-paper-sheet *) {
+  background-color: #475B76 !important;
+}
+
+/* Bordures & Séparateurs en mode sombre adouci */
+html.dark .border-slate-100:not(.print-paper-sheet *),
+html.dark .border-slate-200:not(.print-paper-sheet *) {
+  border-color: #3B4D66 !important;
+}
+
+html.dark .border-slate-300:not(.print-paper-sheet *) {
+  border-color: #4E6380 !important;
+}
+
+html.dark .divide-slate-100:not(.print-paper-sheet *) > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-slate-200:not(.print-paper-sheet *) > :not([hidden]) ~ :not([hidden]) {
+  border-color: #384A62 !important;
+}
+
+/* Typographie & Hiérarchie de contraste en mode sombre adouci */
+html.dark .text-slate-900:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.dark .text-slate-800:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.dark .text-\[\#0F172A\]:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #F8FAFC !important;
+}
+
+html.dark .text-slate-700:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.dark .text-slate-600:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #E2E8F0 !important;
+}
+
+html.dark .text-slate-500:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.dark .text-slate-400:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #CBD5E1 !important;
+}
+
+/* Couleurs sémantiques lisibles sur fond ardoise doux */
+html.dark .text-emerald-700:not(.print-paper-sheet *),
+html.dark .text-emerald-800:not(.print-paper-sheet *),
+html.dark .text-emerald-900:not(.print-paper-sheet *) {
+  color: #6EE7B7 !important;
+}
+
+html.dark .text-amber-700:not(.print-paper-sheet *),
+html.dark .text-amber-800:not(.print-paper-sheet *),
+html.dark .text-amber-900:not(.print-paper-sheet *),
+html.dark .text-amber-950:not(.print-paper-sheet *) {
+  color: #FCD34D !important;
+}
+
+html.dark .text-red-600:not(.print-paper-sheet *),
+html.dark .text-red-700:not(.print-paper-sheet *),
+html.dark .text-red-800:not(.print-paper-sheet *),
+html.dark .text-red-900:not(.print-paper-sheet *),
+html.dark .text-rose-700:not(.print-paper-sheet *),
+html.dark .text-rose-800:not(.print-paper-sheet *),
+html.dark .text-rose-900:not(.print-paper-sheet *) {
+  color: #FCA5A5 !important;
+}
+
+html.dark .text-blue-700:not(.print-paper-sheet *),
+html.dark .text-blue-800:not(.print-paper-sheet *),
+html.dark .text-blue-900:not(.print-paper-sheet *),
+html.dark .text-\[\#1D4ED8\]:not(.print-paper-sheet *) {
+  color: #93C5FD !important;
+}
+
+/* Bandeaux d'alerte et badges sémantiques en mode sombre adouci */
+html.dark .bg-emerald-50:not(.print-paper-sheet *),
+html.dark .bg-emerald-100:not(.print-paper-sheet *) {
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  border-color: rgba(52, 211, 153, 0.45) !important;
+}
+
+html.dark .bg-amber-50:not(.print-paper-sheet *),
+html.dark .bg-amber-50\/90:not(.print-paper-sheet *),
+html.dark .bg-amber-50\/40:not(.print-paper-sheet *),
+html.dark .bg-amber-100:not(.print-paper-sheet *) {
+  background-color: rgba(245, 158, 11, 0.20) !important;
+  border-color: rgba(251, 191, 36, 0.45) !important;
+}
+
+html.dark .bg-red-50:not(.print-paper-sheet *),
+html.dark .bg-rose-50:not(.print-paper-sheet *),
+html.dark .bg-red-100:not(.print-paper-sheet *) {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+  border-color: rgba(248, 113, 113, 0.45) !important;
+}
+
+html.dark .bg-blue-50:not(.print-paper-sheet *),
+html.dark .bg-blue-50\/40:not(.print-paper-sheet *),
+html.dark .bg-blue-100:not(.print-paper-sheet *) {
+  background-color: rgba(59, 130, 246, 0.22) !important;
+  border-color: rgba(96, 165, 250, 0.45) !important;
+}
+
+/* Boutons principaux en mode sombre adouci */
+html.dark button.bg-\[\#0F172A\]:not(.print-paper-sheet *) {
+  background-color: #1E293B !important;
+  border: 1px solid #4E6380;
+  color: #F8FAFC !important;
+}
+
+html.dark button.bg-\[\#0F172A\]:hover:not(.print-paper-sheet *) {
+  background-color: #334155 !important;
+  border-color: #D9A95B;
+}
+
+/* Champs de formulaire en mode sombre adouci */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not(.print-paper-sheet *),
+html.dark select:not(.print-paper-sheet *),
+html.dark textarea:not(.print-paper-sheet *) {
+  background-color: #1E293B !important;
+  color: #F8FAFC !important;
+  border-color: #4E6380 !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"])::placeholder:not(.print-paper-sheet *),
+html.dark textarea::placeholder:not(.print-paper-sheet *) {
+  color: #94A3B8 !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]):focus:not(.print-paper-sheet *),
+html.dark select:focus:not(.print-paper-sheet *),
+html.dark textarea:focus:not(.print-paper-sheet *) {
+  outline: none;
+  border-color: #60A5FA !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25);
+}
+
+html.dark select option {
+  background-color: #1E293B;
+  color: #F8FAFC;
+}
+
+html.dark tbody tr:hover:not(.print-paper-sheet *) {
+  background-color: rgba(51, 65, 85, 0.65) !important;
+}
+
+/* ============================================================================
+   FEUILLE D'APERÇU AVANT IMPRESSION (TOUJOURS PAPIER BLANC RÉALISTE)
+   ============================================================================ */
+.print-paper-sheet {
+  color-scheme: light !important;
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  box-shadow:
+    0 20px 50px -12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(148, 163, 184, 0.35);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* ============================================================================
+   BARRES DE DÉFILEMENT ÉLÉGANTES ET INDÉPENDANTES
+   ============================================================================ */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.6);
+}
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(71, 85, 105, 0.6);
+}
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.8);
+}
+
+/* ============================================================================
+   THÈME VERT PRINTEMPS — ÉMERAUDE PROFONDE, SAUGE MINÉRALE & TEINTES FORESTIÈRES
+   Nuances assombries, confort visuel apaisant & palette professionnelle
+   ============================================================================ */
+html.theme-green {
+  color-scheme: dark;
+}
+
+html.theme-green .zellige-pattern {
+  background-color: #0E1A16 !important;
+  color: #E8F5EE !important;
+  background-image:
+    radial-gradient(rgba(52, 211, 153, 0.10) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Surfaces principales, Cartes & Panneaux */
+html.theme-green .bg-white:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .bg-white\/90:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .bg-white\/95:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:bg-slate-800:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:bg-\[\#273549\]\/90:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:bg-\[\#273549\]\/95:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:bg-slate-900:not(.print-paper-sheet *) {
+  background-color: #142720 !important;
+  color: #E8F5EE !important;
+  border-color: #1F3A30 !important;
+  box-shadow: 0 2px 8px -2px rgba(3, 14, 10, 0.45);
+}
+
+/* Surfaces secondaires, creux & puits de données */
+html.theme-green .bg-slate-50:not(.print-paper-sheet *),
+html.theme-green .bg-slate-50\/80:not(.print-paper-sheet *),
+html.theme-green .bg-slate-50\/70:not(.print-paper-sheet *) {
+  background-color: #0F1F19 !important;
+}
+
+html.theme-green .bg-slate-100:not(.print-paper-sheet *),
+html.theme-green .dark\:bg-slate-700:not(.print-paper-sheet *) {
+  background-color: #1A3329 !important;
+}
+
+html.theme-green .bg-slate-200:not(.print-paper-sheet *) {
+  background-color: #224235 !important;
+}
+
+/* Header & Sidebar — Teinte sombre, feutrée & noble (identique à l'esprit Sombre) */
+html.theme-green header {
+  background-color: rgba(16, 31, 25, 0.97) !important;
+  border-bottom-color: #1F3B30 !important;
+}
+
+html.theme-green aside,
+html.theme-green .sidebar-container {
+  background-color: #0A1410 !important;
+  border-right-color: #172A22 !important;
+}
+
+/* Boutons de navigation latérale (Sidebar repliée ou déployée) */
+html.theme-green aside button.bg-blue-50,
+html.theme-green aside button.bg-slate-100 {
+  background-color: #13241D !important;
+  border-color: #1E3B30 !important;
+  color: #38BDF8 !important;
+}
+html.theme-green aside button.bg-blue-50:hover,
+html.theme-green aside button.bg-slate-100:hover {
+  background-color: #1A3329 !important;
+  color: #6EE7B7 !important;
+}
+
+html.theme-green aside button:not(.bg-\[\#0F172A\]):not(.bg-blue-50):not(.bg-slate-100) {
+  color: #84AA97 !important;
+}
+html.theme-green aside button:not(.bg-\[\#0F172A\]):not(.bg-blue-50):not(.bg-slate-100):hover {
+  background-color: rgba(22, 44, 35, 0.75) !important;
+  color: #E8F5EE !important;
+}
+html.theme-green aside button:not(.bg-\[\#0F172A\]) svg {
+  color: #729B87 !important;
+}
+html.theme-green aside button:not(.bg-\[\#0F172A\]):hover svg {
+  color: #6EE7B7 !important;
+}
+
+/* Bordures & Séparateurs de la barre latérale */
+html.theme-green aside .border-slate-100,
+html.theme-green aside .border-slate-200,
+html.theme-green aside .border-t {
+  border-color: #172A22 !important;
+}
+
+/* Bordures & Séparateurs généraux */
+html.theme-green .border-slate-100:not(.print-paper-sheet *),
+html.theme-green .border-slate-200:not(.print-paper-sheet *),
+html.theme-green .border-slate-300:not(.print-paper-sheet *),
+html.theme-green .dark\:border-slate-700:not(.print-paper-sheet *),
+html.theme-green .dark\:border-slate-800:not(.print-paper-sheet *) {
+  border-color: #1E3B30 !important;
+}
+
+/* Typographie : Hiérarchie équilibrée, douce et sans éblouissement */
+html.theme-green .text-slate-900:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .text-slate-800:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .text-\[\#0F172A\]:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:text-white:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:text-slate-100:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #E8F5EE !important;
+}
+
+html.theme-green .text-slate-700:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .text-slate-600:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:text-slate-200:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:text-slate-300:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #B4D3C4 !important;
+}
+
+html.theme-green .text-slate-500:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .text-slate-400:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-green .dark\:text-slate-400:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #729B87 !important;
+}
+
+/* Boutons & Éléments actifs — Vert émeraude profond & élégant */
+html.theme-green aside button.bg-\[\#0F172A\] {
+  background-color: #0E7453 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px -1px rgba(14, 116, 83, 0.45);
+}
+
+html.theme-green button.bg-\[\#0F172A\]:not(.print-paper-sheet *) {
+  background-color: #0E7453 !important;
+  color: #FFFFFF !important;
+  border-color: #128C65 !important;
+}
+
+html.theme-green button.bg-\[\#0F172A\]:hover:not(.print-paper-sheet *) {
+  background-color: #0B5D42 !important;
+}
+
+html.theme-green button.bg-\[\#1D4ED8\]:not(.print-paper-sheet *) {
+  background-color: #0E7453 !important;
+  color: #FFFFFF !important;
+}
+
+html.theme-green button.bg-\[\#1D4ED8\]:hover:not(.print-paper-sheet *) {
+  background-color: #0B5D42 !important;
+}
+
+/* Variations professionnelles de couleurs d'accentuation */
+html.theme-green .text-\[\#1D4ED8\],
+html.theme-green .dark\:text-blue-400 {
+  color: #38BDF8 !important; /* Bleu lagon doux pour liens/chiffres clés */
+}
+
+html.theme-green .text-emerald-700,
+html.theme-green .dark\:text-emerald-400 {
+  color: #34D399 !important; /* Marge & rentabilité */
+}
+
+html.theme-green .text-amber-800,
+html.theme-green .dark\:text-amber-400 {
+  color: #FBBF24 !important; /* Décaissements & alertes */
+}
+
+/* Badges & Pilules d'état assombris */
+html.theme-green .bg-emerald-50:not(.print-paper-sheet *),
+html.theme-green .bg-emerald-100:not(.print-paper-sheet *) {
+  background-color: rgba(14, 116, 83, 0.22) !important;
+  color: #6EE7B7 !important;
+}
+
+html.theme-green .bg-blue-50:not(.print-paper-sheet *),
+html.theme-green .bg-blue-100:not(.print-paper-sheet *) {
+  background-color: rgba(56, 189, 248, 0.18) !important;
+  color: #BAE6FD !important;
+}
+
+html.theme-green .bg-amber-50:not(.print-paper-sheet *),
+html.theme-green .bg-amber-100:not(.print-paper-sheet *) {
+  background-color: rgba(245, 158, 11, 0.20) !important;
+  color: #FDE68A !important;
+}
+
+html.theme-green .bg-red-50:not(.print-paper-sheet *),
+html.theme-green .bg-red-100:not(.print-paper-sheet *) {
+  background-color: rgba(239, 68, 68, 0.20) !important;
+  color: #FCA5A5 !important;
+}
+
+html.theme-green .bg-amber-50\/90 {
+  background-color: rgba(28, 45, 36, 0.95) !important;
+  border-bottom-color: #1F3B30 !important;
+  color: #FCD34D !important;
+}
+
+/* Champs de formulaires */
+html.theme-green input:not([type="checkbox"]):not([type="radio"]):not(.print-paper-sheet *),
+html.theme-green select:not(.print-paper-sheet *),
+html.theme-green textarea:not(.print-paper-sheet *) {
+  background-color: #0F1E18 !important;
+  color: #E8F5EE !important;
+  border-color: #1F3A30 !important;
+}
+
+html.theme-green input:not([type="checkbox"]):not([type="radio"]):focus:not(.print-paper-sheet *),
+html.theme-green select:focus:not(.print-paper-sheet *),
+html.theme-green textarea:focus:not(.print-paper-sheet *) {
+  outline: none;
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.22) !important;
+}
+
+html.theme-green select option {
+  background-color: #0F1E18;
+  color: #E8F5EE;
+}
+
+html.theme-green tbody tr:hover {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+
+html.theme-green .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(16, 185, 129, 0.3);
+}
+html.theme-green .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(14, 116, 83, 0.5);
+}
+
+/* ============================================================================
+   THÈME ORANGE JOYEUX — TERRACOTTA PROFONDE, AMBRE & BRUN COGNAC NOCTURNE
+   Nuances assombries, atmosphère feutrée & contrastes professionnels
+   ============================================================================ */
+html.theme-orange {
+  color-scheme: dark;
+}
+
+html.theme-orange .zellige-pattern {
+  background-color: #140E0B !important;
+  color: #F7EEE7 !important;
+  background-image:
+    radial-gradient(rgba(249, 115, 22, 0.10) 1.2px, transparent 1.2px),
+    linear-gradient(to right, rgba(234, 88, 12, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 88, 12, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Surfaces principales, Cartes & Panneaux */
+html.theme-orange .bg-white:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .bg-white\/90:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .bg-white\/95:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:bg-slate-800:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:bg-\[\#273549\]\/90:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:bg-\[\#273549\]\/95:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:bg-slate-900:not(.print-paper-sheet *) {
+  background-color: #1F1511 !important;
+  color: #F7EEE7 !important;
+  border-color: #33221C !important;
+  box-shadow: 0 2px 8px -2px rgba(14, 8, 5, 0.55);
+}
+
+/* Surfaces secondaires & puits */
+html.theme-orange .bg-slate-50:not(.print-paper-sheet *),
+html.theme-orange .bg-slate-50\/80:not(.print-paper-sheet *),
+html.theme-orange .bg-slate-50\/70:not(.print-paper-sheet *) {
+  background-color: #17100D !important;
+}
+
+html.theme-orange .bg-slate-100:not(.print-paper-sheet *),
+html.theme-orange .dark\:bg-slate-700:not(.print-paper-sheet *) {
+  background-color: #291B15 !important;
+}
+
+html.theme-orange .bg-slate-200:not(.print-paper-sheet *) {
+  background-color: #36241D !important;
+}
+
+/* Header & Sidebar — Brun chaud sombre et noble (identique à l'esprit Sombre) */
+html.theme-orange header {
+  background-color: rgba(24, 16, 12, 0.97) !important;
+  border-bottom-color: #35231D !important;
+}
+
+html.theme-orange aside,
+html.theme-orange .sidebar-container {
+  background-color: #100A08 !important;
+  border-right-color: #261611 !important;
+}
+
+/* Boutons de navigation latérale (Sidebar repliée ou déployée) */
+html.theme-orange aside button.bg-blue-50,
+html.theme-orange aside button.bg-slate-100 {
+  background-color: #1F1410 !important;
+  border-color: #35231D !important;
+  color: #FB923C !important;
+}
+html.theme-orange aside button.bg-blue-50:hover,
+html.theme-orange aside button.bg-slate-100:hover {
+  background-color: #2B1A14 !important;
+  color: #FDBA74 !important;
+}
+
+html.theme-orange aside button:not(.bg-\[\#0F172A\]):not(.bg-blue-50):not(.bg-slate-100) {
+  color: #B59A8E !important;
+}
+html.theme-orange aside button:not(.bg-\[\#0F172A\]):not(.bg-blue-50):not(.bg-slate-100):hover {
+  background-color: rgba(43, 26, 20, 0.75) !important;
+  color: #F7EEE7 !important;
+}
+html.theme-orange aside button:not(.bg-\[\#0F172A\]) svg {
+  color: #9A7E72 !important;
+}
+html.theme-orange aside button:not(.bg-\[\#0F172A\]):hover svg {
+  color: #FDBA74 !important;
+}
+
+/* Bordures & Séparateurs de la barre latérale */
+html.theme-orange aside .border-slate-100,
+html.theme-orange aside .border-slate-200,
+html.theme-orange aside .border-t {
+  border-color: #261611 !important;
+}
+
+/* Bordures & Séparateurs */
+html.theme-orange .border-slate-100:not(.print-paper-sheet *),
+html.theme-orange .border-slate-200:not(.print-paper-sheet *),
+html.theme-orange .border-slate-300:not(.print-paper-sheet *),
+html.theme-orange .dark\:border-slate-700:not(.print-paper-sheet *),
+html.theme-orange .dark\:border-slate-800:not(.print-paper-sheet *) {
+  border-color: #33221C !important;
+}
+
+/* Typographie : Teintes chaudes feutrées, zéro reflet agressif */
+html.theme-orange .text-slate-900:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .text-slate-800:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .text-\[\#0F172A\]:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:text-white:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:text-slate-100:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #F7EEE7 !important;
+}
+
+html.theme-orange .text-slate-700:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .text-slate-600:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:text-slate-200:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:text-slate-300:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #D6C0B4 !important;
+}
+
+html.theme-orange .text-slate-500:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .text-slate-400:not(.print-paper-sheet):not(.print-paper-sheet *),
+html.theme-orange .dark\:text-slate-400:not(.print-paper-sheet):not(.print-paper-sheet *) {
+  color: #9A7E72 !important;
+}
+
+/* Boutons & Éléments actifs — Terracotta cuite & Cuivre chaleureux */
+html.theme-orange aside button.bg-\[\#0F172A\] {
+  background-color: #B44410 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px -1px rgba(180, 68, 16, 0.45);
+}
+
+html.theme-orange button.bg-\[\#0F172A\]:not(.print-paper-sheet *) {
+  background-color: #B44410 !important;
+  color: #FFFFFF !important;
+  border-color: #CF5317 !important;
+}
+
+html.theme-orange button.bg-\[\#0F172A\]:hover:not(.print-paper-sheet *) {
+  background-color: #943409 !important;
+}
+
+html.theme-orange button.bg-\[\#1D4ED8\]:not(.print-paper-sheet *) {
+  background-color: #B44410 !important;
+  color: #FFFFFF !important;
+}
+
+html.theme-orange button.bg-\[\#1D4ED8\]:hover:not(.print-paper-sheet *) {
+  background-color: #943409 !important;
+}
+
+/* Variations professionnelles de couleurs d'accentuation */
+html.theme-orange .text-\[\#1D4ED8\],
+html.theme-orange .dark\:text-blue-400 {
+  color: #F59E0B !important; /* Ambre doré pour les chiffres clés & totaux */
+}
+
+html.theme-orange .text-emerald-700,
+html.theme-orange .dark\:text-emerald-400 {
+  color: #4ADE80 !important; /* Marge & rentabilité */
+}
+
+html.theme-orange .text-amber-800,
+html.theme-orange .dark\:text-amber-400 {
+  color: #FB923C !important; /* Décaissements & charges */
+}
+
+/* Badges & Pilules d'état assombris */
+html.theme-orange .bg-orange-50:not(.print-paper-sheet *),
+html.theme-orange .bg-orange-100:not(.print-paper-sheet *) {
+  background-color: rgba(180, 68, 16, 0.22) !important;
+  color: #FDBA74 !important;
+}
+
+html.theme-orange .bg-amber-50:not(.print-paper-sheet *),
+html.theme-orange .bg-amber-100:not(.print-paper-sheet *) {
+  background-color: rgba(245, 158, 11, 0.20) !important;
+  color: #FDE68A !important;
+}
+
+html.theme-orange .bg-emerald-50:not(.print-paper-sheet *),
+html.theme-orange .bg-emerald-100:not(.print-paper-sheet *) {
+  background-color: rgba(74, 222, 128, 0.16) !important;
+  color: #86EFAC !important;
+}
+
+html.theme-orange .bg-blue-50:not(.print-paper-sheet *),
+html.theme-orange .bg-blue-100:not(.print-paper-sheet *) {
+  background-color: rgba(217, 119, 6, 0.18) !important;
+  color: #FDE68A !important;
+}
+
+html.theme-orange .bg-red-50:not(.print-paper-sheet *),
+html.theme-orange .bg-red-100:not(.print-paper-sheet *) {
+  background-color: rgba(239, 68, 68, 0.20) !important;
+  color: #FCA5A5 !important;
+}
+
+html.theme-orange .bg-amber-50\/90 {
+  background-color: rgba(40, 24, 18, 0.95) !important;
+  border-bottom-color: #35231D !important;
+  color: #FDE68A !important;
+}
+
+/* Champs de formulaires */
+html.theme-orange input:not([type="checkbox"]):not([type="radio"]):not(.print-paper-sheet *),
+html.theme-orange select:not(.print-paper-sheet *),
+html.theme-orange textarea:not(.print-paper-sheet *) {
+  background-color: #17100D !important;
+  color: #F7EEE7 !important;
+  border-color: #33221C !important;
+}
+
+html.theme-orange input:not([type="checkbox"]):not([type="radio"]):focus:not(.print-paper-sheet *),
+html.theme-orange select:focus:not(.print-paper-sheet *),
+html.theme-orange textarea:focus:not(.print-paper-sheet *) {
+  outline: none;
+  border-color: #EA580C !important;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.22) !important;
+}
+
+html.theme-orange select option {
+  background-color: #17100D;
+  color: #F7EEE7;
+}
+
+html.theme-orange tbody tr:hover {
+  background-color: rgba(234, 88, 12, 0.08) !important;
+}
+
+html.theme-orange .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(234, 88, 12, 0.3);
+}
+html.theme-orange .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(180, 68, 16, 0.5);
+}
+

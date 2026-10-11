@@ -1,0 +1,6 @@
+{
+  "name": "Atlas Soft Water",
+  "description": "ERP, POS, Gestion de Stock, SAV et Finance Offline-First pour le Traitement de l'Eau au Maroc",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
