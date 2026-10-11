@@ -3662,3 +3662,61 @@ export async function executeResetAppToZero(
   });
 }
 
+export async function executeUpdateCustomer(
+  params: {
+    customerId: string;
+    name: string;
+    type?: CustomerType;
+    phone?: string;
+    whatsapp?: string;
+    email?: string;
+    city?: string;
+    address?: string;
+    ice?: string;
+    notes?: string;
+    actor?: ActorContext;
+  },
+  targetDb: AtlasSoftWaterDB = db
+): Promise<Customer> {
+  return enqueueTransactionalMutation(async () => {
+    return targetDb.transaction('rw', getAllTables(targetDb), async () => {
+      const actor = params.actor ?? DEFAULT_ACTOR;
+      const now = new Date().toISOString();
+      const bDate = getMoroccoBusinessDate(now);
+
+      const customer = await targetDb.customers.get(params.customerId);
+      if (!customer) throw new Error('Client introuvable.');
+
+      const cleanName = params.name.trim();
+      if (!cleanName) throw new Error('Le nom du client est obligatoire.');
+
+      // Préservation intégrale du solde dû (balanceCents) et de l'historique
+      const updatedCustomer: Customer = {
+        ...customer,
+        name: cleanName,
+        type: params.type ?? customer.type,
+        phone: params.phone !== undefined ? params.phone.trim() : customer.phone,
+        whatsapp: params.whatsapp !== undefined ? params.whatsapp.trim() : (params.phone?.trim() ?? customer.whatsapp),
+        email: params.email !== undefined ? params.email.trim() : customer.email,
+        city: params.city !== undefined ? params.city.trim() : customer.city,
+        address: params.address !== undefined ? params.address.trim() : customer.address,
+        ice: params.ice !== undefined ? params.ice.trim() : customer.ice,
+        notes: params.notes !== undefined ? params.notes.trim() : customer.notes,
+        updatedAt: now,
+      };
+
+      await targetDb.customers.put(updatedCustomer);
+
+      await recordAuditLogInTx(targetDb, {
+        ...actor,
+        action: 'CUSTOMER_UPDATED',
+        entityType: 'CUSTOMER',
+        entityId: customer.id,
+        summary: `Mise à jour des coordonnées du client "${updatedCustomer.name}" (${updatedCustomer.code})`,
+        businessDate: bDate,
+      });
+
+      return updatedCustomer;
+    });
+  });
+}
